@@ -3,25 +3,36 @@ from os import walk
 
 myPath = "F:/work"
 
-myFiles = []
-myDirs = []
-keyWords = []
+myFiles = {}
+myDirs = {}
+keyWords = {}
 
 for root, dirs, files in os.walk(myPath):
     for file in files:
         if file.endswith(".txt"):
             filepath = os.path.join(root, file)
             filename = os.path.basename(filepath)
-            myDirs.append(os.path.dirname(filepath))
-            myFiles.append(filename)
+	    myFiles[filename] = []
+            myFiles[filename].append(filepath)
 print(myFiles)
 print(myDirs)
 
 for subdir, dirs, files in os.walk(myPath):
     for file in files:
+        if file.endswith(".txt"):
             f=open(subdir+'/'+ file,'r')
-            lines = f.readlines()
-            keyWords.append(lines)
-            f.close()
+	    for line in f:
+		for word in line.split():	    
+		    filepath = os.path.join(root, file)
+		    filename = os.path.basename(filepath)	    
+		    keyWords[word] = []
+		    keyWords[word].append(filepath)
 print keyWords
 
+var = raw_input("Enter a keyword: ")
+if var not in keyWords.keys():
+	print("Not found!")
+
+else:
+	for paths in keyWords[var]:
+		print(paths)

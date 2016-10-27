@@ -36,5 +36,5 @@ if var not in keyWords.keys():
 else:
 	for paths in keyWords[var]:
 		print(paths)
-	for files in myFiles[var]:
-	    print files
+	#for files in myFiles[var + ".txt"]:
+	    #print files

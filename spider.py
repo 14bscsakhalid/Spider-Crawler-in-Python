@@ -14,8 +14,8 @@ for root, dirs, files in os.walk(myPath):
             filename = os.path.basename(filepath)
 	    myFiles[filename] = []
             myFiles[filename].append(filepath)
-print(myFiles)
-print(myDirs)
+#print(myFiles)
+#print(myDirs)
 
 for subdir, dirs, files in os.walk(myPath):
     for file in files:
@@ -27,12 +27,14 @@ for subdir, dirs, files in os.walk(myPath):
 		    filename = os.path.basename(filepath)	    
 		    keyWords[word] = []
 		    keyWords[word].append(filepath)
-print keyWords
+#print keyWords
 
 var = raw_input("Enter a keyword: ")
 if var not in keyWords.keys():
-	print("Not found!")
+	print("No keyword in any text file")
 
 else:
 	for paths in keyWords[var]:
 		print(paths)
+	for files in myFiles[var]:
+	    print files
